@@ -19,6 +19,8 @@ special characters such as ":".
 
 * Find maybe a better XML formatter than `dicttoxml`?
 * Properly package for distutils.
+* Figure out why two CTRL-Ds seem to be necessary to close standard input.
+  Workaround: `cat | ppyaml`.
 
 ## Author
 
