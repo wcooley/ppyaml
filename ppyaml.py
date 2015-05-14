@@ -26,6 +26,11 @@ import pprint
 import sys
 import yaml
 
+# yaml.loader.BaseLoader ignores tags and constructs only basic Python objects;
+# SafeLoader (and safe_load, safe_load_all methods) only barf when they
+# encounter tags, despite what the docs make it sound like.
+import yaml.loader
+
 format_as = {
     'python':   pprint.pformat,
     'json':     json.dumps,
@@ -63,7 +68,7 @@ if __name__ == '__main__':
     if not args.format: args.format = ['python']
 
     for infile in args.yaml_file:
-        yamlin = yaml.load_all(infile)
+        yamlin = yaml.load_all(infile, Loader=yaml.loader.BaseLoader)
         for ydoc in yamlin:
             for fmt in args.format:
                 print 'FORMAT: {0}'.format(fmt)
