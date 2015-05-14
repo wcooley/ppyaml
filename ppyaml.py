@@ -63,9 +63,9 @@ if __name__ == '__main__':
     if not args.format: args.format = ['python']
 
     for infile in args.yaml_file:
-        yamlin = yaml.load(infile)
-        for fmt in args.format:
-            print 'FORMAT: {0}'.format(fmt)
-            print format_as[fmt](yamlin, indent=4)
-            print 
-
+        yamlin = yaml.load_all(infile)
+        for ydoc in yamlin:
+            for fmt in args.format:
+                print 'FORMAT: {0}'.format(fmt)
+                print format_as[fmt](ydoc, indent=4)
+                print
