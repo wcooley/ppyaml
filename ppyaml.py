@@ -20,6 +20,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import print_function
 import argparse
 import json
 import pprint
@@ -47,7 +48,7 @@ try:
     from xml.dom.minidom import parseString
     def xml_dump(data, indent):
         xml_str = dicttoxml(data)
-        print xml_str
+        print(xml_str)
         dom = parseString(xml_str)
         return dom.toprettyxml(indent=' ' * indent)
     format_as['xml'] = xml_dump
@@ -71,6 +72,6 @@ if __name__ == '__main__':
         yamlin = yaml.load_all(infile, Loader=yaml.loader.BaseLoader)
         for ydoc in yamlin:
             for fmt in args.format:
-                print 'FORMAT: {0}'.format(fmt)
-                print format_as[fmt](ydoc, indent=4)
-                print
+                print('FORMAT: {0}'.format(fmt))
+                print(format_as[fmt](ydoc, indent=4))
+                print()
